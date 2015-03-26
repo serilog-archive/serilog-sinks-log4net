@@ -6,7 +6,7 @@
       <authors>Serilog Contributors</authors>
       <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
       <projectUrl>http://serilog.net</projectUrl>
-      <iconUrl>http://serilog.net/images/serilog-nuget.png</iconUrl>
+      <iconUrl>http://serilog.net/images/serilog-sink-nuget.png</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
       <description>Serilog event sink that writes to Log4Net. Merge your new Serilog event stream into your existing log4net infrastructure.</description>
       <tags>serilog logging log4net</tags>
