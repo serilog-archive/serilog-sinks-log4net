@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using log4net;
 using log4net.Config;
+using Serilog.Context;
 using Serilog.Enrichers;
 
 namespace Serilog.Sinks.Log4Net.Sample
@@ -22,17 +23,20 @@ namespace Serilog.Sinks.Log4Net.Sample
             Log.Logger = new LoggerConfiguration()
                 .Enrich.With(new ThreadIdEnricher())
                 .WriteTo.ColoredConsole(outputTemplate: OutputTemplate)
-                .WriteTo.Log4Net()
+                .WriteTo.Log4Net(skipFrames: 3)
                 .CreateLogger();
 
-
-            var log4NetLogger = LogManager.GetLogger(typeof (Program));
+            var log4NetLogger = LogManager.GetLogger(typeof(Program));
             var serilogLogger = Log.ForContext<Program>();
 
             var username = Environment.UserName;
 
-            log4NetLogger.InfoFormat("Hello from log4net, running as {0}!", username);
-            serilogLogger.Information("Hello from Serilog, running as {Username}!", username);
+            log4NetLogger.InfoFormat("LOG4NET---Hello, running as {0}!", username);
+
+            serilogLogger.Information("SERILOG---Hello, running as {Username}!", username);
+
+            var p = new { firstname = "john", lastname = "doe" };
+            serilogLogger.Information("SERILOG-custom property added for {user} {@p}", username, p);
 
             Console.ReadKey(true);
         }
