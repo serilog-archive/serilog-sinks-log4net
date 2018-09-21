@@ -7,6 +7,7 @@
       <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
       <projectUrl>http://serilog.net</projectUrl>
       <iconUrl>http://serilog.net/images/serilog-sink-nuget.png</iconUrl>
+      <repository type="git" url="https://github.com/serilog/serilog-sinks-log4net" />
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
       <description>Serilog event sink that writes to Log4Net. Merge your new Serilog event stream into your existing log4net infrastructure.</description>
       <tags>serilog logging log4net</tags>
