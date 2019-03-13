@@ -51,5 +51,29 @@ This can let you specify a filter on an appender in Log4Net. The example below, 
 </log4net>
 ```
 
+#### Preserving Stacktrace information
+Passing `3 (Default is 3)` for skipFrames, will load the relative number of frames from the call stack. This is required to be configurable to allow the caller class, method name, line number to be pulled. This is best used in scenarios where you have your own custom wrapper over Serilog or log4net.
+
+e.g.
+
+```csharp
+var log = new LoggerConfiguration()
+    .WriteTo.Log4Net(skipFrames: 3)
+    .CreateLogger();
+```
+This change allows the correct values returned for log4net conversion template.
+
+```xml
+<conversionPattern value="[%utcdate{yyyy-MM-ddTHH:mm:ssZ}}][%level][%thread][%C(%M),%line][%message]%newline"/>
+```
+Output received in logs when skipFrames is 3
+```txt
+[2017-12-19T16:51:53Z}][INFO][1][Serilog.Sinks.Log4Net.Sample.Program(Main),39][SERILOG-custom property added for "ikson01" { firstname: "john", lastname: "doe" }]
+```
+Output received in logs when skipFrames is 0
+```txt
+[2017-12-19T16:53:12Z}][INFO][1][Serilog.Core.Sinks.SafeAggregateSink(Emit),0][SERILOG-custom property added for "ikson01" { firstname: "john", lastname: "doe" }]
+```
+
 [(More information.)](http://nblumhardt.com/2013/06/serilog-sinks-log4net/)
 

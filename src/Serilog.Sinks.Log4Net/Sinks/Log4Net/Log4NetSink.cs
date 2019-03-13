@@ -13,11 +13,13 @@
 // limitations under the License.
 
 using System;
+using System.Diagnostics;
 using System.Security.AccessControl;
 using Serilog.Core;
 using Serilog.Debugging;
 using Serilog.Events;
 using log4net;
+using log4net.Core;
 
 namespace Serilog.Sinks.Log4Net
 {
@@ -25,20 +27,33 @@ namespace Serilog.Sinks.Log4Net
     {
         class NullDisposable : IDisposable
         {
-            public void Dispose(){}
+            public void Dispose() { }
         }
 
         private const string ContextMessage = "Serilog-Log4NetSink";
+        private const int DefaultSkipFrames = 3;
         readonly string _defaultLoggerName;
         readonly IFormatProvider _formatProvider;
         private readonly bool _supplyContextMessage;
+        private readonly int _skipFrames = 3;
 
-        public Log4NetSink(string defaultLoggerName, IFormatProvider formatProvider = null, bool supplyContextMessage = false)
+        public Log4NetSink(string defaultLoggerName, IFormatProvider formatProvider = null, bool supplyContextMessage = false, int skipFrames = DefaultSkipFrames)
         {
-            if (defaultLoggerName == null) throw new ArgumentNullException("defaultLoggerName");
+            if (defaultLoggerName == null)
+                throw new ArgumentNullException(nameof(defaultLoggerName));
             _defaultLoggerName = defaultLoggerName;
             _formatProvider = formatProvider;
             _supplyContextMessage = supplyContextMessage;
+            if (_skipFrames < 0)
+            {
+                throw new ArgumentException(nameof(skipFrames));
+            }
+            _skipFrames = skipFrames;
+        }
+
+        private Type GetCallingType()
+        {
+            return new StackFrame(_skipFrames, false).GetMethod().DeclaringType;
         }
 
         public void Emit(LogEvent logEvent)
@@ -57,30 +72,31 @@ namespace Serilog.Sinks.Log4Net
             var exception = logEvent.Exception;
 
             var logger = LogManager.GetLogger(loggerName);
-            
+
             using (_supplyContextMessage ? ThreadContext.Stacks["NDC"].Push(ContextMessage) : new NullDisposable())
             {
+                var type = GetCallingType();
                 switch (logEvent.Level)
                 {
                     case LogEventLevel.Verbose:
                     case LogEventLevel.Debug:
-                        logger.Debug(message, exception);
+                        logger.Logger.Log(type, Level.Debug, message, exception);
                         break;
                     case LogEventLevel.Information:
-                        logger.Info(message, exception);
+                        logger.Logger.Log(type, Level.Info, message, exception);
                         break;
                     case LogEventLevel.Warning:
-                        logger.Warn(message, exception);
+                        logger.Logger.Log(type, Level.Warn, message, exception);
                         break;
                     case LogEventLevel.Error:
-                        logger.Error(message, exception);
+                        logger.Logger.Log(type, Level.Error, message, exception);
                         break;
                     case LogEventLevel.Fatal:
-                        logger.Fatal(message, exception);
+                        logger.Logger.Log(type, Level.Fatal, message, exception);
                         break;
                     default:
                         SelfLog.WriteLine("Unexpected logging level, writing to log4net as Info");
-                        logger.Info(message, exception);
+                        logger.Logger.Log(type, Level.Info, message, exception);
                         break;
                 }
             }
