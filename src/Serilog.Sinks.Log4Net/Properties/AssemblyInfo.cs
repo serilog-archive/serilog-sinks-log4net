@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyTitle("Serilog.Sinks.Log4Net")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCopyright("Copyright © Serilog Contributors 2014")]
+[assembly: AssemblyCopyright("Copyright © Serilog Contributors 2019")]

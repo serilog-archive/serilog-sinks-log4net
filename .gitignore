@@ -181,3 +181,4 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+/.vs/serilog-sinks-log4net/v16/Server/sqlite3
