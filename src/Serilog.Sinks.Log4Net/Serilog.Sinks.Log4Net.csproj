@@ -8,6 +8,8 @@
 		<BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
 		<AssemblyName>Serilog.Sinks.Log4Net</AssemblyName>
 		<RootNamespace>Serilog</RootNamespace>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>2.0.0</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
