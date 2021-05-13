@@ -10,10 +10,10 @@
 		<RootNamespace>Serilog</RootNamespace>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Version>2.0.0</Version>
-		<PackageId>Serilog.Sinks.Log4Net2</PackageId>
-		<Authors>Serilog.Sinks.Log4Net</Authors>
-		<Company>Serilog.Sinks.Log4Net</Company>
-		<Product>Serilog.Sinks.Log4Net</Product>
+		<PackageId>Serilog.Sinks.Log4Net.NetStandard</PackageId>
+		<Authors>Serilog.Sinks.Log4Net.NetStandard</Authors>
+		<Company>Serilog.Sinks.Log4Net.NetStandard</Company>
+		<Product>Serilog.Sinks.Log4Net.NetStandard</Product>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
