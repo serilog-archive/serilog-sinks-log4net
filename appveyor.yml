@@ -1,10 +1,29 @@
-#---------------------------------#
-#      artifacts configuration    #
-#---------------------------------#
-
+version: 2.0.{build}
+image: Visual Studio 2019
+configuration: Release
+platform: Any CPU
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  version_prefix: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+build_script:
+- cmd: dotnet build serilog-sinks-log4net.sln --configuration Release
 artifacts:
-  # pushing all *.nupkg files in build directory recursively
-  - path: '**\*.nupkg'    
-  
-build:
-  publish_nuget: true
+- path: '**\*.nupkg'
+  name: Serilog.Sinks.Log4Net
+deploy:
+- provider: NuGet
+  server: nuget.org
+  api_key:
+    secure: 3dD0waWcsVdrYfC+wMrysb41tWbi6Cpm8K8kclLpTiH52kFkx5qV7zO9pPgR6qYn
