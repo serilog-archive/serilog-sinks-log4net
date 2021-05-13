@@ -3,8 +3,5 @@
 #---------------------------------#
 
 artifacts:
-  # pushing a single file
-  - path: serilog-sinks-log4net.zip
-
   # pushing all *.nupkg files in build directory recursively
   - path: '**\*.nupkg'    
