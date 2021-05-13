@@ -1,0 +1,3 @@
+artifacts:
+  - path: serilog-sinks-log4net.zip
+    name: serilog-sinks-log4net
