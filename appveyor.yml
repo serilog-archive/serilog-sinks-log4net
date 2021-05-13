@@ -21,7 +21,7 @@ build_script:
 - cmd: dotnet build serilog-sinks-log4net.sln --configuration Release
 artifacts:
 - path: '**\*.nupkg'
-  name: Serilog.Sinks.Log4Net
+
 deploy:
 - provider: NuGet
   server: nuget.org
