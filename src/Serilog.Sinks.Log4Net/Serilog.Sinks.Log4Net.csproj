@@ -6,7 +6,7 @@
 	<PropertyGroup>
 		<BaseOutputPath>bin\</BaseOutputPath>
 		<BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
-		<AssemblyName>Serilog.Sinks.Log4Net</AssemblyName>
+		<AssemblyName>Serilog.Sinks.Log4Net2</AssemblyName>
 		<RootNamespace>Serilog</RootNamespace>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Version>2.0.0</Version>
