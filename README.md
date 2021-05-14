@@ -1,4 +1,4 @@
-# Serilog.Sinks.Log4Net
+Serilog.Sinks.Log4Net.NetStandard
 
 [![Build status](https://ci.appveyor.com/api/projects/status/j2axn2v9pn63ya98/branch/master?svg=true)](https://ci.appveyor.com/project/BuddyWork/serilog-sinks-log4net/branch/master)
 [![NuGet Version](http://img.shields.io/nuget/v/Serilog.Sinks.Log4Net.NetStandard.svg?style=flat)](https://www.nuget.org/packages/Serilog.Sinks.Log4Net.NetStandard/)
