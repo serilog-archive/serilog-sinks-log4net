@@ -6,7 +6,7 @@
 Duplicates Serilog events through the log4net pipeline to allow integration with existing code and libraries.
 
 **Package** - [Serilog.Sinks.Log4Net](http://nuget.org/packages/serilog.sinks.log4net)
-| **Platforms** - .NET 4.5
+| **Platforms** - .NET 4.5, .NET Core 3.1 and .NET 5.0
 
 ```csharp
 var log = new LoggerConfiguration()

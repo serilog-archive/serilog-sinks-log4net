@@ -21,7 +21,7 @@ namespace Serilog.Sinks.Log4Net.Sample
 
             Log.Logger = new LoggerConfiguration()
                 .Enrich.With(new ThreadIdEnricher())
-                .WriteTo.ColoredConsole(outputTemplate: OutputTemplate)
+                .WriteTo.Console(outputTemplate: OutputTemplate)
                 .WriteTo.Log4Net()
                 .CreateLogger();
 

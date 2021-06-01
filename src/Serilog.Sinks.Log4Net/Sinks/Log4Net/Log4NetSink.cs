@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using System;
-using System.Security.AccessControl;
 using Serilog.Core;
 using Serilog.Debugging;
 using Serilog.Events;
@@ -55,7 +54,6 @@ namespace Serilog.Sinks.Log4Net
 
             var message = logEvent.RenderMessage(_formatProvider);
             var exception = logEvent.Exception;
-
             var logger = LogManager.GetLogger(loggerName);
             
             using (_supplyContextMessage ? ThreadContext.Stacks["NDC"].Push(ContextMessage) : new NullDisposable())
