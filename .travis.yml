@@ -3,5 +3,5 @@ mono: none
 solution: serilog-sinks-log4net.sln
 dotnet: 3.1.100
 script:
- - dontent restore
+ - dotnet restore
  
