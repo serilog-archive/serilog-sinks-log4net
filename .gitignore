@@ -131,7 +131,7 @@ publish/
 *.publishproj
 
 # NuGet Packages
-*.nupkg
+#*.nupkg
 # The packages folder can be ignored because of Package Restore
 **/packages/*
 # except build/, which is used as an MSBuild target.
@@ -181,3 +181,5 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+/.vs/serilog-sinks-log4net/v16/Server/sqlite3
+/.vs

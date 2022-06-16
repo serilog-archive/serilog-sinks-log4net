@@ -18,6 +18,7 @@ using Serilog.Core;
 using Serilog.Debugging;
 using Serilog.Events;
 using log4net;
+using System.Reflection;
 
 namespace Serilog.Sinks.Log4Net
 {
@@ -56,7 +57,7 @@ namespace Serilog.Sinks.Log4Net
             var message = logEvent.RenderMessage(_formatProvider);
             var exception = logEvent.Exception;
 
-            var logger = LogManager.GetLogger(loggerName);
+            var logger = LogManager.GetLogger(Assembly.GetCallingAssembly(), loggerName);
             
             using (_supplyContextMessage ? ThreadContext.Stacks["NDC"].Push(ContextMessage) : new NullDisposable())
             {

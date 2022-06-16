@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
 using log4net;
 using log4net.Config;
 using Serilog.Enrichers;
@@ -17,11 +15,11 @@ namespace Serilog.Sinks.Log4Net.Sample
 
         private static void Main()
         {
-            XmlConfigurator.Configure();
+            XmlConfigurator.Configure(LogManager.GetRepository(Assembly.GetCallingAssembly()), new FileInfo("Serilog.Sinks.Log4Net.Sample.dll.config"));
 
             Log.Logger = new LoggerConfiguration()
                 .Enrich.With(new ThreadIdEnricher())
-                .WriteTo.ColoredConsole(outputTemplate: OutputTemplate)
+                .WriteTo.Console(outputTemplate: OutputTemplate)
                 .WriteTo.Log4Net()
                 .CreateLogger();
 
